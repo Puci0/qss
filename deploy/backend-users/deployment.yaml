@@ -1,0 +1,23 @@
+{{- if .Values.backend_users.enabled }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+  labels:
+    app: users
+spec:
+  replicas: {{ .Values.backend_users.replicas }}
+  selector:
+    matchLabels:
+      app: users
+  template:
+    metadata:
+      labels:
+        app: users
+    spec:
+      containers:
+      - name: users
+        image: {{ .Values.registry }}/{{ .Values.backend_users.image }}
+        ports:
+        - containerPort: 8001
+{{- end }}
