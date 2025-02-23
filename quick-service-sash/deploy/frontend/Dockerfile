@@ -1,4 +1,4 @@
-FROM base_frontend AS build
+FROM harbor.cs.pib.nask.pl/qss_project/base-frontend:latest AS build
 
 COPY ./services/frontend/QSS/ /usr/src/app/
 
