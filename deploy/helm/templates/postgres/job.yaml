@@ -18,5 +18,5 @@ spec:
             PGPASSWORD=postgres psql -h postgres-service -p 5432 -d qss_db -U postgres -W -f /tmp/qss_db.sql
       restartPolicy: Never
       imagePullSecrets:
-        - harbor
+        - name: harbor
   ttlSecondsAfterFinished: 15
