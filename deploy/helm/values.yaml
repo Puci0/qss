@@ -6,24 +6,29 @@ api:
   enabled: true
   image: qss_project/api
   replicas: 1
+  tag: <TAG>
 
 frontend:
   enabled: true
   image: qss_project/angular
   replicas: 1
+  tag: <TAG>
 
 backend_users:
   enabled: true
   image: qss_project/users
   replicas: 1
+  tag: <TAG>
 
 pgadmin:
   enabled: true
   image: dpage/pgadmin4
   replicas: 1
+  tag: <TAG>
 
 postgres:
   enabled: true
   image: postgres
   tag: latest
   replicas: 1
+  tag: <TAG>
