@@ -19,6 +19,8 @@ spec:
         image: harbor.cs.pib.nask.pl/qss_project/api:<TAG>
         ports:
         - containerPort: 80
+      imagePullSecrets:
+        - name: harbor
 
 ---
 
