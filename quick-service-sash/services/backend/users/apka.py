@@ -6,7 +6,7 @@ import logging
 
 app = Flask(__name__)
 
-DATABASE_URL = "postgres://postgres:postgres@postgres:5432/qss_db"
+DATABASE_URL = "postgres://postgres:postgres@postgres-service:5432/qss_db"
 
 def get_conn():
     conn = psycopg2.connect(DATABASE_URL)
