@@ -20,4 +20,6 @@ spec:
         image: {{ .Values.registry }}/{{ .Values.api.image }}:{{.Values.api.tag}}
         ports:
         - containerPort: 80
+      imagePullSecrets:
+        - name: harbor
 {{- end }}
