@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: users
-        image: harbor.cs.pib.nask.pl/qss_project/users
+        image: harbor.cs.pib.nask.pl/qss_project/users:<TAG>
         ports:
         - containerPort: 8001
 

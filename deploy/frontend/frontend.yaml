@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: harbor.cs.pib.nask.pl/qss_project/angular
+        image: harbor.cs.pib.nask.pl/qss_project/angular:<TAG>
         ports:
         - containerPort: 80
 

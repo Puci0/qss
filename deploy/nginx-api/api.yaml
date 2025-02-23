@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: api
-        image: harbor.cs.pib.nask.pl/qss_project/api
+        image: harbor.cs.pib.nask.pl/qss_project/api:<TAG>
         ports:
         - containerPort: 80
 
