@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: users
-        image: {{ .Values.registry }}/{{ .Values.backend_users.image }}
+        image: {{ .Values.registry }}/{{ .Values.backend_users.image }}:{{.Values.backend_users.tag}}
         ports:
         - containerPort: 8001
 {{- end }}
