@@ -1,4 +1,3 @@
-{{- if .Values.backend_users.enabled }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -6,7 +5,7 @@ metadata:
   labels:
     app: users
 spec:
-  replicas: {{ .Values.backend_users.replicas }}
+  replicas: 1
   selector:
     matchLabels:
       app: users
@@ -17,7 +16,22 @@ spec:
     spec:
       containers:
       - name: users
-        image: {{ .Values.registry }}/{{ .Values.backend_users.image }}
+        image: harbor.cs.pib.nask.pl/qss_project/users
         ports:
         - containerPort: 8001
-{{- end }}
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: users-service
+spec:
+  selector:
+    app: users
+  ports:
+    - protocol: TCP
+      port: 8001
+      targetPort: 8001
+  type: ClusterIP
+

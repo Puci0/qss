@@ -1,4 +1,3 @@
-{{- if .Values.frontend.enabled }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -6,7 +5,7 @@ metadata:
   labels:
     app: frontend
 spec:
-  replicas: {{ .Values.frontend.replicas }}
+  replicas: 1
   selector:
     matchLabels:
       app: frontend
@@ -17,7 +16,21 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: {{ .Values.registry }}/{{ .Values.frontend.image }}
+        image: harbor.cs.pib.nask.pl/qss_project/angular
         ports:
         - containerPort: 80
-{{- end }}
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-service
+spec:
+  selector:
+    app: frontend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: ClusterIP

@@ -1,10 +1,9 @@
-{{- if .Values.postgres.enabled }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: postgres-dep
+  name: postgres-deployment
 spec:
-  replicas: {{ .Values.postgres.replicas }}
+  replicas: 1
   selector:
     matchLabels:
       app: postgres
@@ -15,7 +14,7 @@ spec:
     spec:
       containers:
       - name: postgres
-        image: {{ .Values.postgres.image }}:{{ .Values.postgres.tag }}
+        image: postgres:latest
         envFrom:
           - configMapRef:
               name: postgres-secret
@@ -29,4 +28,17 @@ spec:
       - name: postgres-data
         persistentVolumeClaim:
           claimName: postgres-volume-claim
-{{- end }}
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres-service
+spec:
+  ports:
+  - port: 5432
+    targetPort: 5432
+  selector:
+    app: postgres
+
