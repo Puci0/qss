@@ -1,0 +1,23 @@
+<div class="px-2 py-1">
+<mat-card class="mini-post-card my-2">
+  <div class="d-flex flex-row align-items-center">
+    <!-- Avatar użytkownika -->
+    <img mat-card-avatar [src]="post.avatarUrl" alt="User Avatar" class="me-2" />
+
+    <!-- Krótkie informacje o poście -->
+    <div class="flex-grow-1">
+      <mat-card-title class="mb-1">
+        {{ post.name }}
+      </mat-card-title>
+      <mat-card-subtitle class="text-truncate">
+        {{ post.title }}
+      </mat-card-subtitle>
+    </div>
+
+    <!-- Data -->
+    <div class="text-muted ms-2">
+      <small>{{ post.createdAt | date:'shortDate' }}</small>
+    </div>
+  </div>
+</mat-card>
+</div>

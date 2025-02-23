@@ -1,0 +1,108 @@
+services:
+  api:
+    container_name: nginx_api
+    hostname: nginx_api_docker
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - browse
+
+  frontend:
+    container_name: front
+    hostname: front_docker
+    build:
+      context: ..
+      dockerfile: ./deploy/frontend/Dockerfile
+#    ports:
+#      - "80:80"
+
+  announcements_comments:
+    container_name: ogloszenia
+    hostname: ann_docker
+    build:
+      context: ..
+      dockerfile: ./deploy/announcements_comments/Dockerfile
+#    ports:
+#      - "9203:8080"
+
+#    command: ["sleep", "infinity"]
+
+  bot_chat:
+    container_name: bot
+    hostname: bot_docker
+    build:
+      context: ..
+      dockerfile: ./deploy/bot_chat/Dockerfile
+
+#  chat:
+#    container_name: chat
+#    hostname: chat_docker
+#    build:
+#      context: ./chat
+#      dockerfile: Dockerfile
+#    command: ["sleep", "infinity"]
+
+  postgres:
+    image: postgres:${PSQL_VERSION}
+    container_name: postgres
+    hostname: postgres
+    environment:
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
+#    ports:
+#      - "5432:5432"
+
+  browse:
+    container_name: browse
+    hostname: browse_docker
+    depends_on:
+      browse_engine:
+        condition: service_healthy
+    build:
+      context: ..
+      dockerfile: ./deploy/browse/Dockerfile
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin4_container
+    ports:
+      - "8888:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: dominiggk@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    volumes:
+      - ./pgadmin:/var/lib/pgadmin
+
+  users:
+    container_name: users
+    hostname: users_docker
+    build:
+      context: ..
+      dockerfile: ./deploy/users/Dockerfile
+
+  browse_engine:
+    image: elasticsearch:${ES_VERSION}
+    healthcheck:
+      test: curl --output /dev/null --silent --head --fail -u elastic:elastic browse_engine:9200
+      interval: 5s
+      timeout: 60s
+      retries: 15
+    container_name: elastic_search
+    hostname: es_docker
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - xpack.security.enrollment.enabled=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx1024m"
+#    volumes:
+ #     - ./es_data:/usr/share/elasticsearch/data
+
+#  kibana:
+#    image: kibana:${ES_VERSION}
+#    container_name: kibana
+#    ports:
+#      - "5601:5601"

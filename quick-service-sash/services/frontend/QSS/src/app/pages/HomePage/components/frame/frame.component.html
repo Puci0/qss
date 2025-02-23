@@ -1,0 +1,19 @@
+<div class="frame-container">
+  <!-- Lewy sidebar -->
+  <aside class="sidebar left">
+    <ng-content select="[left-sidebar]"></ng-content>
+  </aside>
+
+  <!-- Główna sekcja -->
+  <main class="main-content">
+    <ng-content select="[main-content]"></ng-content>
+    <app-faq></app-faq>
+  </main>
+   <!-- FAQ sekcja pod główną sekcją -->
+   
+
+  <!-- Prawy sidebar -->
+  <aside class="sidebar right">
+    <ng-content select="[right-sidebar]"></ng-content>
+  </aside>
+</div>

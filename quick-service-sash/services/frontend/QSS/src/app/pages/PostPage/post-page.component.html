@@ -1,0 +1,65 @@
+<app-frame>
+  <div left-sidebar>
+    <p>Stan użytkowników online:</p>
+    <app-online-user-list></app-online-user-list>
+  </div>
+
+  <!-- Główna sekcja -->
+  <div main-content>
+    <div class="post-container">
+      <div class="post-header">
+        <div class="post-profile-picture" [style.background-image]="'url(' + post.image + ')'"></div>
+        <div class="post-info">
+          <h2>{{ post.name }}</h2>
+          <p class="post-category">Specjalizacja: {{ post.category }}</p>
+          <p class="post-qualifications">Kwalifikacje: {{ post.qualifications }}</p>
+        </div>
+      </div>
+      <div class="post-content">
+        <h3>Kim jestem?</h3>
+        <p>{{ post.content }}</p>
+
+        <h3>Dlaczego warto wybrać mnie?</h3>
+        <p>
+          Praktyczne doświadczenie, indywidualne podejście i umiejętności dostosowane
+          do Twoich potrzeb – to tylko część powodów, dla których warto wybrać moje usługi.
+        </p>
+
+        <h3>Skontaktuj się ze mną!</h3>
+        <div class="contact-info">
+          <p><strong>Email:</strong> marek.jasinski.com</p>
+          <p><strong>Telefon:</strong> 514-***-***</p>
+        </div>
+      </div>
+      
+    </div>
+    <div class="post-reactions">
+      <!-- Sekcja lajka -->
+      <button class="like-button" (click)="likePost()">
+        👍 Lubię to <span class="like-count">({{ likes }})</span>
+      </button>
+    
+      <!-- Sekcja komentarzy -->
+      <div class="comments-section">
+        <h4>Komentarze</h4>
+        <!-- Lista komentarzy -->
+        <div *ngFor="let comment of comments; let i = index" class="comment">
+          <strong>{{ comment.author }}:</strong> {{ comment.content }}
+          <button class="like-comment-button" (click)="likeComment(i)">
+            👍 Lubię to <span class="like-count">{{ comment.likes }}</span>
+          </button>
+        </div>
+      
+        <!-- Formularz dodawania komentarzy -->
+        <div class="add-comment">
+          <input type="text" placeholder="Dodaj komentarz..." [(ngModel)]="newComment" />
+          <button (click)="addComment()">Dodaj</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div right-sidebar>
+    <app-sidebar-similar-post *ngFor="let post of posts"  [post]="post"></app-sidebar-similar-post>
+  </div>
+</app-frame>

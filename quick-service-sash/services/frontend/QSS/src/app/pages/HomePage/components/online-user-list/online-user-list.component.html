@@ -1,0 +1,20 @@
+<mat-list>
+  <mat-list-item *ngFor="let user of users" class="user-item">
+    <!-- Awatar -->
+
+
+    <!-- Imię, nazwisko i status w jednej linii -->
+    <div class="user-info">
+      <img
+        matListAvatar
+        [src]="user.avatar"
+        alt="{{user.firstName}} {{user.lastName}}"
+        (error)="user.avatar = 'assets/images/avatar-placeholder.png'"
+      />
+      <span class="user-name">{{ user.firstName }} {{ user.lastName }}</span>
+      <div class="user-status">
+        <span class="status-dot"></span> On-Line
+      </div>
+    </div>
+  </mat-list-item>
+</mat-list>

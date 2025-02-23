@@ -1,0 +1,46 @@
+.idea/
+*.iml
+*.ipr
+*.iws
+*.suo
+*.user
+*.rsuser
+*.cache
+*.log
+*.swp
+*.out
+*.class
+*.pyc
+*.pyo
+*.bak
+*.tmp
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg
+*.egg-info/
+dist/
+build/
+*.env
+*.venv
+env/
+venv/
+pip-wheel-metadata/
+*.pytest_cache/
+migrations/
+
+# Java
+# *.class
+# *.jar
+# *.war
+# *.ear
+# *.log
+# *.jmx
+# *.jtl
+# *.wsdd
+# target/
+# .gradle/
+# build/
+# out/

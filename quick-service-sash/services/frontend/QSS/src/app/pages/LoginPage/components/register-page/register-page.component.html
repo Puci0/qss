@@ -1,0 +1,88 @@
+<div class="container d-flex justify-content-center align-items-center vh-100">
+  <div class="card p-4 shadow-lg" style="max-width: 400px; width: 100%;">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title class="text-center" style="margin-bottom: 1em">Register</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <form (ngSubmit)="onSubmit()" [formGroup]="registerForm" autocomplete="off">
+          <div class="mb-3">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>First Name</mat-label>
+              <input matInput type="text" formControlName="name" autocomplete="off"/>
+              <mat-error *ngIf="registerForm.get('name')?.hasError('required'); else otherErrorsName">
+                Name is required.
+              </mat-error>
+              <ng-template #otherErrorsName>
+                <mat-error *ngIf="registerForm.get('name')?.hasError('firstLetterUpperCase')">
+                  Imie zaczyna się wielką literą
+                </mat-error>
+                <mat-error *ngIf="registerForm.get('name')?.hasError('restLettersLowerCase')">
+                  Tylko pierwsza litera może być duża
+                </mat-error>
+                <mat-error *ngIf="registerForm.get('name')?.hasError('onlyLetters')">
+                  Imie powinno zawierać tylko litery
+                </mat-error>
+              </ng-template>
+            </mat-form-field>
+          </div>
+          <div class="mb-3">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Surname</mat-label>
+              <input matInput type="text" formControlName="surname" autocomplete="off"/>
+              <mat-error *ngIf="registerForm.get('surname')?.hasError('required'); else otherErrorsSurname">
+                Surname is required.
+              </mat-error>
+              <ng-template #otherErrorsSurname>
+                <mat-error *ngIf="registerForm.get('surname')?.hasError('firstLetterUpperCase')">
+                  Nazwisko zaczyna się wielką literą
+                </mat-error>
+                <mat-error *ngIf="registerForm.get('surname')?.hasError('restLettersLowerCase')">
+                  Tylko pierwsza litera może być duża
+                </mat-error>
+                <mat-error *ngIf="registerForm.get('surname')?.hasError('onlyLetters')">
+                  Nazwisko powinno zawierać tylko litery
+                </mat-error>
+              </ng-template>
+            </mat-form-field>
+          </div>
+          <div class="mb-3">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Email</mat-label>
+              <input matInput type="email" formControlName="email" autocomplete="off"/>
+              <mat-error *ngIf="registerForm.get('email')?.invalid">
+                Please enter a valid email.
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="mb-3">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Password</mat-label>
+              <input matInput type="password" formControlName="password" autocomplete="off"/>
+              <mat-error *ngIf="registerForm.get('password')?.invalid">
+                Password must be at least 5 characters.
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="mb-3">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Confirm Password</mat-label>
+              <input matInput type="password" formControlName="confirmPassword" autocomplete="off"/>
+            </mat-form-field>
+            <mat-error *ngIf="registerForm.hasError('mismatch') && registerForm.get('confirmPassword')?.touched">
+              Passwords must match.
+            </mat-error>
+          </div>
+          <button mat-raised-button color="primary" type="submit" class="w-100" [disabled]="registerForm.invalid">
+            Register
+          </button>
+        </form>
+
+      </mat-card-content>
+    </mat-card>
+    <p style="text-align: center; padding-top: 3em">Masz już konto?</p>
+    <button routerLink="/login" mat-raised-button class="w-100">
+      Zaloguj się
+    </button>
+  </div>
+</div>

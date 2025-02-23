@@ -1,0 +1,8 @@
+FROM python:3.12-alpine AS base_users
+
+WORKDIR /flask-docker
+
+RUN pip3 install flask
+RUN pip3 install psycopg2-binary
+RUN pip3 install bcrypt
+RUN pip3 install logging

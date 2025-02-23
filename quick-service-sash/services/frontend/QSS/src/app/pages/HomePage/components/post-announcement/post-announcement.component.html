@@ -1,0 +1,32 @@
+<mat-card class="post-card my-3">
+  <div class="d-flex flex-row align-items-start justify-content-between">
+    <!-- Header po lewej -->
+    <mat-card-header class="bg-dark-subtle me-3" style="min-width: 200px;">
+      <img mat-card-avatar [src]="post.avatarUrl" alt="User Avatar" />
+      <mat-card-title>{{ post.name }}</mat-card-title>
+      <mat-card-subtitle>
+        <p><strong>Kategoria:</strong> {{ post.category }}</p>
+      </mat-card-subtitle>
+    </mat-card-header>
+
+    <!-- Zawartość w środku -->
+    <div class="flex-grow-1 me-3">
+      <mat-card-content>
+        <div class="d-flex justify-content-center mb-2">
+          <strong>{{ post.title }}</strong>
+        </div>
+        <p>{{ post.description }}</p>
+        <div class="d-flex justify-content-end">
+          <p><em>{{ post.createdAt | date:'longDate' }}</em></p>
+        </div>
+      </mat-card-content>
+    </div>
+
+    <!-- Akcje po prawej -->
+    <mat-card-actions class="d-flex flex-column align-items-stretch" style="min-width: 150px;">
+
+      <button mat-button class="mb-2">🔗 Udostępnij</button>
+      <button mat-button>✉ Wyślij wiadomość</button>
+    </mat-card-actions>
+  </div>
+</mat-card>
