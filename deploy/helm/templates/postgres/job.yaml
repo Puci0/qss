@@ -1,0 +1,20 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: launch-db
+  annotations:
+    "helm.sh/hook": post-install
+    "helm.sh/hook-weight": "-5"
+spec:
+  template:
+    spec:
+      containers:
+      - name: job-db
+        image: harbor.cs.pib.nask.pl/qss_project/job-postgres:latest
+        command:
+          - sh
+          - -c
+          - |
+            PGPASSWORD=postgres psql -h postgres-service -p 5432 -d qss_db -U postgres -W -f /tmp/qss_db.sql
+      restartPolicy: Never
+  ttlSecondsAfterFinished: 15

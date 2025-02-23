@@ -1,0 +1,29 @@
+
+domain: dominik.local
+registry: harbor.cs.pib.nask.pl
+
+api:
+  enabled: true
+  image: qss_project/api
+  replicas: 1
+
+frontend:
+  enabled: true
+  image: qss_project/angular
+  replicas: 1
+
+backend_users:
+  enabled: true
+  image: qss_project/users
+  replicas: 1
+
+pgadmin:
+  enabled: true
+  image: dpage/pgadmin4
+  replicas: 1
+
+postgres:
+  enabled: true
+  image: postgres
+  tag: latest
+  replicas: 1
