@@ -11,7 +11,7 @@ RUN mkdir -p /usr/share/nginx/html
 
 COPY --from=build /usr/src/app/dist /usr/share/nginx/html
 COPY ./deploy/frontend/default.conf /etc/nginx/conf.d/default.conf
-COPY 40-domain-entrypoint.sh /docker-entrypoint.d
+COPY ./deploy/frontend/40-domain-entrypoint.sh /docker-entrypoint.d
 RUN CHMOD 755 /docker-entrypoint.d/40-domain-entrypoint.sh 
 
 CMD ["nginx", "-g", "daemon off;"]
