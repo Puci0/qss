@@ -2,3 +2,7 @@ questions:
 - variable: domain
   default: "dominik.local"
   description: "Enter domain name"
+- variable: user_password
+  type: password
+  question: "Enter your password"
+  required: true
