@@ -20,7 +20,10 @@ spec:
         image: {{ .Values.registry }}/{{ .Values.frontend.image }}:{{.Values.frontend.tag}}
         ports:
         - containerPort: 80
+        env:
+        - name: DOMAIN
+          value: "{{ .Values.domain }}"
       imagePullSecrets:
         - name: harbor
-      
+
 {{- end }}
