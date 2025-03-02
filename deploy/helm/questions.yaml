@@ -1,0 +1,4 @@
+questions:
+- variable: domain
+  default: "dominik.local"
+  description: "Enter domain name"
